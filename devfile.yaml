@@ -1,26 +1,27 @@
 schemaVersion: 2.1.0
 metadata:
-  name: ansible-2.13
+  name: python-hello-world
 components:
   - name: tools
     container:
-      image: registry.redhat.io/ansible-automation-platform-22/ee-supported-rhel8
+      image: quay.io/devfile/universal-developer-image:ubi8-0e189d9
       volumeMounts:
-        - name: runner
-          path: /runner
+        - name: venv
+          path: /home/user/.venv
       memoryLimit: 512Mi
       mountSources: true
 
-  - name: runner
+  - name: venv
     volume:
       size: 1G
 
 commands:
-  - id: run-application
+  - id: init-compile
     exec:
-      label: "Run application"
       component: tools
-      workingDir: ${PROJECT_SOURCE}
-      commandLine: "python3 hello-world.py"
-      group:
-        kind: run
+      commandLine: "python3 -m pip install ansible==2.13"
+      workingDir: $PROJECTS_ROOT
+      
+events:
+  postStart:
+    - init-compile   
