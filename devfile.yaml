@@ -16,11 +16,11 @@ components:
       size: 1G
 
 commands:
-#   - id: init-compile
-#     exec:
-#       component: tools
-#       commandLine: "python3 -m pip install ansible==3.0.0"
-#       workingDir: ${PROJECT_SOURCE}
+  - id: init-compile
+    exec:
+      component: tools
+      commandLine: "python3 -m pip install ansible==3.0.0"
+      workingDir: ${PROJECT_SOURCE}
 
   - id: run-application
     exec:
@@ -31,6 +31,6 @@ commands:
       group:
         kind: run
 
-# events:
-#   postStart:
-#     - init-compile   
+events:
+  postStart:
+    - init-compile   
