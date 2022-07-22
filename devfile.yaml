@@ -20,7 +20,7 @@ commands:
     exec:
       component: tools
       commandLine: "python3 -m pip install ansible==3.0.0"
-      workingDir: $PROJECTS_ROOT
+      workingDir: ${PROJECT_SOURCE}
 
   - id: run-application
     exec:
