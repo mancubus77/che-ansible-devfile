@@ -18,19 +18,19 @@ components:
 commands:
 commands:
   - id: init-compile
-      exec:
-        component: tools
-        commandLine: "python3 -m pip install ansible==3.0.0"
-        workingDir: $PROJECTS_ROOT
+    exec:
+      component: tools
+      commandLine: "python3 -m pip install ansible==3.0.0"
+      workingDir: $PROJECTS_ROOT
 
   - id: run-application
-      exec:
-        label: "Run application"
-        component: tools
-        workingDir: ${PROJECT_SOURCE}
-        commandLine: "python3 hello-world.py"
-        group:
-          kind: run
+    exec:
+      label: "Run application"
+      component: tools
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: "python3 hello-world.py"
+      group:
+        kind: run
 
 events:
   postStart:
