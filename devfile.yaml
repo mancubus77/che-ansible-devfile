@@ -16,7 +16,6 @@ components:
       size: 1G
 
 commands:
-commands:
   - id: init-compile
     exec:
       component: tools
