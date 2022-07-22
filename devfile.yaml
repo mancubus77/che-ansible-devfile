@@ -1,6 +1,6 @@
 schemaVersion: 2.1.0
 metadata:
-  name: python-hello-world
+  name: ansible-3.0.0
 components:
   - name: tools
     container:
