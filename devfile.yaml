@@ -15,12 +15,12 @@ components:
     volume:
       size: 1G
 
-# commands:
-#   - id: run-application
-#     exec:
-#       label: "Run application"
-#       component: tools
-#       workingDir: ${PROJECT_SOURCE}
+commands:
+  - id: run-application
+    exec:
+      label: "Run application"
+      component: tools
+      workingDir: ${PROJECT_SOURCE}
 #       commandLine: "python3 hello-world.py"
-#       group:
-#         kind: run
+      group:
+        kind: run
