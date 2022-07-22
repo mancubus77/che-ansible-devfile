@@ -1,0 +1,26 @@
+schemaVersion: 2.1.0
+metadata:
+  name: ansible-2.13
+components:
+  - name: tools
+    container:
+      image: registry.redhat.io/ansible-automation-platform-22/ee-supported-rhel8
+      volumeMounts:
+        - name: runner
+          path: /runner
+      memoryLimit: 512Mi
+      mountSources: true
+
+  - name: runner
+    volume:
+      size: 1G
+
+# commands:
+#   - id: run-application
+#     exec:
+#       label: "Run application"
+#       component: tools
+#       workingDir: ${PROJECT_SOURCE}
+#       commandLine: "python3 hello-world.py"
+#       group:
+#         kind: run
