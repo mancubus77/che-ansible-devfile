@@ -2,7 +2,7 @@ schemaVersion: 2.1.0
 metadata:
   name: ansible-3.0.0
 components:
-  - name: tools
+  - name: ansible
     container:
       image: quay.io/devfile/universal-developer-image:ubi8-0e189d9
       volumeMounts:
@@ -18,16 +18,16 @@ components:
 commands:
   - id: init-compile
     exec:
-      component: tools
-      commandLine: "python3 -m pip install ansible==3.0.0"
+      component: ansible
+      commandLine: "python3 -m pip install --user virtualenv; python3 -m virtualenv .ansible; source .ansible/bin/activate; python -m pip install ansible"
       workingDir: ${PROJECT_SOURCE}
 
   - id: run-application
     exec:
       label: "Run application"
-      component: tools
+      component: ansible
       workingDir: ${PROJECT_SOURCE}
-      commandLine: "python3 hello-world.py"
+      commandLine: "source .ansible/bin/activate"
       group:
         kind: run
 
