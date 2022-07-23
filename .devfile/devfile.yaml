@@ -3,6 +3,12 @@ metadata:
   name: ansible-development
 components:
   - name: ansible
+    attributes:
+      app.kubernetes.io/name: python
+      che-theia.eclipse.org/vscode-extensions:
+        - 'relative:extension/resources/github_com/microsoft/vscode-python/releases/download/2020_7_94776/ms-python-release.vsix'
+      che-theia.eclipse.org/vscode-preferences:
+        python.globalModuleInstallation: true
     container:
       image: quay.io/devfile/universal-developer-image:3.0
       volumeMounts:
