@@ -1,6 +1,6 @@
 schemaVersion: 2.1.0
 metadata:
-  name: ansible-3.0.0
+  name: ansible-development
 components:
   - name: ansible
     container:
