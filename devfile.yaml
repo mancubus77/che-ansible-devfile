@@ -9,7 +9,7 @@ components:
       che-theia.eclipse.org/vscode-preferences:
         python.globalModuleInstallation: true
     container:
-      image: registry.redhat.io/devspaces/udi-rhel8:3.0
+      image: registry.redhat.io/devspaces/udi-rhel8:3.16
       volumeMounts:
         - name: venv
           path: /home/user/.venv
