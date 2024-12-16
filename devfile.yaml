@@ -8,6 +8,16 @@ components:
         - 'relative:extension/resources/github_com/microsoft/vscode-python/releases/download/2020_7_94776/ms-python-release.vsix'
       che-theia.eclipse.org/vscode-preferences:
         python.globalModuleInstallation: true
+      pod-overrides:
+        metadata:
+          annotations:
+              k8s.v1.cni.cncf.io/networks: |
+                [
+                  {
+                    "name": "eve-l2-network",
+                    "ips": ["192.168.100.101/24"]
+                  }
+                ]      
     container:
       image: registry.redhat.io/devspaces/udi-rhel8:3.16
       volumeMounts:
