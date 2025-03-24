@@ -1,7 +1,7 @@
-schemaVersion: 2.2.0
+schemaVersion: 2.1.0
 metadata:
   name: ansible-development
-  components:
+components:
   - name: ansible
     attributes:
       che-theia.eclipse.org/vscode-extensions:
@@ -24,6 +24,7 @@ metadata:
                 [
                   {
                     "name": "eve-l2-network"
+
                   }
                 ]      
     container:
@@ -37,21 +38,7 @@ metadata:
   - name: venv
     volume:
       size: 1G
-  # - name: myk8deploy
-  #   kubernetes:
-  #     inlined:
-  #       apiVersion: batch/v1
-  #       kind: pod
-  #       metadata:
-  #         name: pi
-  #       spec:
-  #         template:
-  #           spec:
-  #             containers:
-  #             - name: job
-  #               image: busybox
-  #               command: ["sleep", "3600"]
-  #             restartPolicy: Never
+
 commands:
   - id: init-compile
     exec:
@@ -62,12 +49,3 @@ commands:
   - id: run-application
     exec:
       label: "Run application"
-      component: ansible
-      workingDir: ${PROJECT_SOURCE}
-      commandLine: "source .ansible/bin/activate"
-      group:
-        kind: run
-
-events:
-  postStart:
-    - init-compile   
