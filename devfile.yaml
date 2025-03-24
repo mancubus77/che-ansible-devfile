@@ -101,10 +101,17 @@ commands:
       commandLine: "source .ansible/bin/activate"
       group:
         kind: run
-  - id: deployk8s
+  - id: deploy-openshift
     apply:
       component: outerloop-vm
-      
+
+  - id: deploy
+    composite:
+      commands:
+        - deploy-openshift
+      group:
+        kind: deploy
+        isDefault: true      
 events:
   postStart:
     - init-compile   
