@@ -37,22 +37,21 @@ metadata:
   - name: venv
     volume:
       size: 1G
-
-  - name: myk8deploy
-    kubernetes:
-      inlined:
-        apiVersion: batch/v1
-        kind: pod
-        metadata:
-          name: pi
-        spec:
-          template:
-            spec:
-              containers:
-              - name: job
-                image: busybox
-                command: ["sleep", "3600"]
-              restartPolicy: Never
+  # - name: myk8deploy
+  #   kubernetes:
+  #     inlined:
+  #       apiVersion: batch/v1
+  #       kind: pod
+  #       metadata:
+  #         name: pi
+  #       spec:
+  #         template:
+  #           spec:
+  #             containers:
+  #             - name: job
+  #               image: busybox
+  #               command: ["sleep", "3600"]
+  #             restartPolicy: Never
 commands:
   - id: init-compile
     exec:
