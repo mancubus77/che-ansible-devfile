@@ -2,7 +2,7 @@ schemaVersion: 2.1.0
 metadata:
   name: ansible-development
 components:
-  - name: myk8deploy
+  - name: outerloop-vm
     kubernetes:
       inlined: |
         apiVersion: kubevirt.io/v1
@@ -103,7 +103,7 @@ commands:
         kind: run
   - id: deployk8s
     apply:
-      component: myk8deploy
+      component: outerloop-vm
       
 events:
   postStart:
