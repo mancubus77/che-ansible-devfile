@@ -24,7 +24,6 @@ components:
                 [
                   {
                     "name": "eve-l2-network"
-
                   }
                 ]      
     container:
@@ -49,3 +48,12 @@ commands:
   - id: run-application
     exec:
       label: "Run application"
+      component: ansible
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: "source .ansible/bin/activate"
+      group:
+        kind: run
+
+events:
+  postStart:
+    - init-compile   
