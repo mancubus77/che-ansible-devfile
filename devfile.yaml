@@ -2,6 +2,54 @@ schemaVersion: 2.1.0
 metadata:
   name: ansible-development
 components:
+  - name: myk8deploy
+    kubernetes:
+      inlined: |
+        apiVersion: kubevirt.io/v1
+        kind: VirtualMachine
+        metadata:
+          name: eve-ng
+        spec:
+          running: true
+          template:
+            metadata:
+              creationTimestamp: null
+            spec:
+              architecture: amd64
+              domain:
+                cpu:
+                  cores: 8
+                  sockets: 1
+                  threads: 1
+                memory:
+                  guest: 32Gi
+                devices:
+                  disks:
+                    - disk:
+                        bus: virtio
+                      name: containerdisk
+                  interfaces:
+                    - bridge: {}
+                      macAddress: '02:14:cb:00:00:06'
+                      model: virtio
+                      name: pod-network
+                    - bridge: {}
+                      macAddress: '02:14:cb:00:00:07'
+                      model: virtio
+                      name: eve-l2-network
+                machine:
+                  type: pc-q35-rhel9.2.0
+              networks:
+                - name: pod-network
+                  pod: {}
+                - multus:
+                    networkName: default/eve-l2-network
+                  name: eve-l2-network
+              terminationGracePeriodSeconds: 0
+              volumes:
+                - containerDisk:
+                    image: 'quay.io/mancubus77/eveng:6.2.0-4-dhcp'
+                  name: containerdisk
   - name: ansible
     attributes:
       che-theia.eclipse.org/vscode-extensions:
@@ -53,7 +101,10 @@ commands:
       commandLine: "source .ansible/bin/activate"
       group:
         kind: run
-
+  - id: deployk8s
+    apply:
+      component: myk8deploy
+      
 events:
   postStart:
     - init-compile   
