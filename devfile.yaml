@@ -110,7 +110,7 @@ commands:
       commands:
         - deploy-openshift
       group:
-        kind: deploy
+        kind: run
         isDefault: true      
 events:
   postStart:
