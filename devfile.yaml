@@ -30,8 +30,8 @@ components:
           #         }
           #       ]      
     container:
-      #image: registry.redhat.io/devspaces/udi-rhel8:3.16
-      image: quay.io/mancubus77/udi-ansible:network-automation
+      image: registry.redhat.io/devspaces/udi-rhel8:3.16
+      # image: quay.io/mancubus77/udi-ansible:network-automation
       volumeMounts:
         - name: venv
           path: /home/user/.venv
