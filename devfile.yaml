@@ -8,8 +8,9 @@ components:
         - 'relative:extension/resources/github_com/microsoft/vscode-python/releases/download/2020_7_94776/ms-python-release.vsix'
       che-theia.eclipse.org/vscode-preferences:
         python.globalModuleInstallation: true
-      pod-overrides:
-        metadata:
+      ### Only for Bidge interfaces 
+      # pod-overrides:
+      #   metadata:
           # Static IP in NAD
           # annotations:
           #     k8s.v1.cni.cncf.io/networks: |
@@ -19,25 +20,31 @@ components:
           #           "ips": ["192.168.100.101/24"]
           #         }
           #       ]      
-          annotations:
-              k8s.v1.cni.cncf.io/networks: |
-                [
-                  {
-                    "name": "eve-l2-network"
-                  }
-                ]      
+
+          ### Only for Bidge interfaces 
+          # annotations:
+          #     k8s.v1.cni.cncf.io/networks: |
+          #       [
+          #         {
+          #           "name": "eve-l2-network"
+          #         }
+          #       ]      
     container:
-      image: registry.redhat.io/devspaces/udi-rhel8:3.16
+      #image: registry.redhat.io/devspaces/udi-rhel8:3.16
+      image: 
       volumeMounts:
         - name: venv
           path: /home/user/.venv
       memoryLimit: 512Mi
       mountSources: true
-
+      env:
+        - name: ANSIBLE_COLLECTIONS_PATH
+          value: ~/.ansible/collections:/usr/share/ansible/collections:/projects/ansible-devspaces-demo/collections
+        - name: KUBEDOCK_ENABLED
+          value: 'true'
   - name: venv
     volume:
       size: 1G
-
 commands:
   - id: init-compile
     exec:
